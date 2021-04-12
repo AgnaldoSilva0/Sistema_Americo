@@ -13,7 +13,8 @@ public class Cliente {
     String responsavel;
     String inscricaoEstadual;
 
-    public Cliente(String nome, String cnpj, String endereco, String email, String numero, String cidade, String cep, String uf, String responsavel, String inscricaoEstadual) {
+    public Cliente(String nome, String cnpj, String endereco, String email, String numero, String cidade, String cep, 
+            String uf, String responsavel, String inscricaoEstadual) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.endereco = endereco;

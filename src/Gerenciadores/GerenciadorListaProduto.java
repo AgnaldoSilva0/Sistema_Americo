@@ -12,6 +12,7 @@ public class GerenciadorListaProduto {
     
     public static void carregarProduto() {
         String patch = "C:\\BDs\\BDAmalcaburio.txt";
+        int contador = 1;
         try (BufferedReader br = new BufferedReader(new FileReader(patch))) {
             String linhaProduto = br.readLine();
             while (linhaProduto != null) {
@@ -22,6 +23,9 @@ public class GerenciadorListaProduto {
                 int ipi = Integer.parseInt(vectLeitor[3]);
                 Listas.listProduto.add(new Produto(codigo, descricao, preco, ipi));
                 linhaProduto = br.readLine();
+                contador = contador + 1;
+                System.out.println(contador);
+                System.out.println(codigo);
             }
             br.close();
         } catch (IOException e) {

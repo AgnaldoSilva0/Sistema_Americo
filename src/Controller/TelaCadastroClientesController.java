@@ -80,16 +80,16 @@ public class TelaCadastroClientesController implements Initializable {
     }
     
     private void limparCampos() {
-        tfNome.clear();
-        tfCnpj.clear();
-        tfCep.clear();
-        tfCidade.clear();
-        tfEmail.clear();
-        tfEndereco.clear();
-        tfEstado.clear();
-        tfIe.clear();
-        tfResponsavel.clear();
-        tfTelefone.clear();
+        tfNome.setText("N/A");
+        tfCnpj.setText("N/A");
+        tfCep.setText("N/A");
+        tfCidade.setText("N/A");
+        tfEmail.setText("N/A");
+        tfEndereco.setText("N/A");
+        tfEstado.setText("N/A");
+        tfIe.setText("N/A");
+        tfResponsavel.setText("N/A");
+        tfTelefone.setText("N/A");
     }
     
 }

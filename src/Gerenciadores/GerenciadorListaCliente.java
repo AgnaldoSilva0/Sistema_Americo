@@ -51,7 +51,7 @@ public class GerenciadorListaCliente {
     }
     
     public static void cadastrarCliente(String nome, String cnpj, String endereco, String email, String numero, 
-            String cidade, String cep, String uf, String responsavel, String ie) {
+        String cidade, String cep, String uf, String responsavel, String ie) {
         Listas.listCliente.add(new Cliente(nome, cnpj, endereco, email, numero, cidade, cep, uf, responsavel, ie));
         addCliente();
         Alertas.showAlert("Sucesso", "Cliente cadastrado", nome, Alert.AlertType.CONFIRMATION);

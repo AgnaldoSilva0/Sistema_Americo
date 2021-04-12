@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="278.0" prefWidth="489.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaInicialController">
+<AnchorPane id="AnchorPane" prefHeight="278.0" prefWidth="489.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaInicialController">
    <children>
       <Button fx:id="btOrcamento" layoutX="20.0" layoutY="109.0" mnemonicParsing="false" prefHeight="154.0" prefWidth="162.0" text="Orçamento">
          <font>

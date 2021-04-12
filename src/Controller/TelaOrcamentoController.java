@@ -1,7 +1,10 @@
 package Controller;
 
 import Gerenciadores.GerenciadorArquivo;
+import Gerenciadores.GerenciadorDeTelas;
 import Gerenciadores.GerenciadorListaOrcamento;
+import Jasper.ImpressaoOrcamento;
+import Jasper.SaidaDados;
 import Limitadores.Alertas;
 import Model.Cliente;
 import Model.Listas;
@@ -190,14 +193,33 @@ public class TelaOrcamentoController implements Initializable {
     }
     
     private void entradaDadosCliente() {
+        Listas.lista.clear();
         try {
-            String cnpj = tbClientesOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+        double total = 0;
+        for (Produto produto : Listas.listOrcamento) {
+            total = total + produto.getPrecoTotal();
+        }
+        SaidaDados sd = new SaidaDados();
+        String cnpj = tbClientesOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+        sd.setValorTotal(total);
         for (Cliente i : Listas.listCliente) {
-            if (i.getCnpj().equalsIgnoreCase(cnpj)) {               
-                GerenciadorArquivo.salvarArquivoOrcamento(i.getNome(), i.getCnpj(), i.getEndereco(), i.getEmail(), 
-                        i.getNumero(), i.getCidade(), i.getCep(), i.getUf(), i.getResponsavel(), i.getInscricaoEstadual());
+            if (i.getCnpj().equalsIgnoreCase(cnpj)) {  
+            sd.setCliente(i.getNome());
+            sd.setCnpj(i.getCnpj());
+            sd.setEndereco(i.getEndereco());
+            sd.setEmail(i.getEmail());
+            sd.setNumero(i.getNumero());
+            sd.setCidade(i.getCidade());
+            sd.setCep(i.getCep());
+            sd.setUf(i.getUf());
+            sd.setIe(i.getInscricaoEstadual());
             }
         }
+        for (Produto e : Listas.listOrcamento) {
+                //String codigo, String descricao, double precoUni, double PrecoTotalUni, int quantidade
+                Listas.lista.add(new SaidaDados(e.getCodigo(), e.getDescricao(), e.getPreco(), e.getPrecoTotal(), e.getQuantidade()));
+            }
+            GerenciadorDeTelas.abrirTelaFinalizar();
         } catch (NullPointerException e) {
             Alertas.showAlert("Cliente não selecionado", "Nenhum Cliente Selecionado", "Selecione Um cliente da lista para gerar o arquivo", Alert.AlertType.INFORMATION);
         }

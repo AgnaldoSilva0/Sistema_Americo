@@ -10,6 +10,7 @@ public class Listas {
     public static List <Cliente> listCliente = new ArrayList();
     public static List <Produto> listProduto = new ArrayList();
     public static List <Produto> listOrcamento = new ArrayList();
+    public static List lista = new ArrayList();
     
     public static void carregarTodasListas() {
         
