@@ -9,7 +9,6 @@ import sistemaamerico.SistemaAmerico;
 import sistemaamerico.TelaCadastroCliente;
 import sistemaamerico.TelaClientes;
 import sistemaamerico.TelaFinalizar;
-import sistemaamerico.TelaOrcamento;
 import sistemaamerico.TelaProdutos;
 import sistemaamerico.TelaTermos;
 
@@ -27,16 +26,6 @@ public class GerenciadorDeTelas {
     
     public static void abrirTelaProduto() {
     TelaProdutos instancia = new TelaProdutos();
-        try {
-            instancia.start(new Stage());
-            SistemaAmerico.getStage().close();
-        } catch (Exception ex) {
-            Logger.getLogger(TelaInicialController.class.getName()).log(Level.SEVERE, null, ex);
-    }
-    }
-    
-    public static void abrirTelaOrcamento() {
-    TelaOrcamento instancia = new TelaOrcamento();
         try {
             instancia.start(new Stage());
             SistemaAmerico.getStage().close();

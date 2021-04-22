@@ -47,8 +47,8 @@ public class GerenciadorListaOrcamento {
     public static void adicionarProdutoOrcamento(int quantidade, String codigo, String descricao, double preco, int ipi, double precoTotal) {
         for (Produto i : Listas.listOrcamento){
             if (i.getCodigo().equalsIgnoreCase(codigo)) {
-                i.setPrecoTotal(i.getPreco() * quantidade);
-                i.setQuantidade(i.getQuantidade() + quantidade);
+                i.setQuantidade(quantidade + i.getQuantidade());
+                i.setPrecoTotal(i.getPreco() * i.getQuantidade());
                 addProdutoArquivoOrcamento();
                 return;
             }
