@@ -1,7 +1,7 @@
 package Model;
 
 public class Cliente {
-    
+
     String nome;
     String cnpj;
     String endereco;
@@ -12,8 +12,9 @@ public class Cliente {
     String uf;
     String responsavel;
     String inscricaoEstadual;
+    int idCliente;
 
-    public Cliente(String nome, String cnpj, String endereco, String email, String numero, String cidade, String cep, 
+    public Cliente(String nome, String cnpj, String endereco, String email, String numero, String cidade, String cep,
             String uf, String responsavel, String inscricaoEstadual) {
         this.nome = nome;
         this.cnpj = cnpj;
@@ -26,13 +27,30 @@ public class Cliente {
         this.responsavel = responsavel;
         this.inscricaoEstadual = inscricaoEstadual;
     }
-   
+
     public Cliente(String nome, String cnpj, String numero, String cidade, String responsavel) {
         this.nome = nome;
         this.cnpj = cnpj;
         this.numero = numero;
         this.cidade = cidade;
         this.responsavel = responsavel;
+    }
+
+    public Cliente(String nome, String cnpj, String endereco, String email, String numero, String cidade, String cep, String uf, String responsavel, String inscricaoEstadual, int idCliente) {
+        this.nome = nome;
+        this.cnpj = cnpj;
+        this.endereco = endereco;
+        this.email = email;
+        this.numero = numero;
+        this.cidade = cidade;
+        this.cep = cep;
+        this.uf = uf;
+        this.responsavel = responsavel;
+        this.inscricaoEstadual = inscricaoEstadual;
+        this.idCliente = idCliente;
+    }
+
+    public Cliente() {
     }
 
     public String getNome() {
@@ -114,4 +132,13 @@ public class Cliente {
     public void setInscricaoEstadual(String inscricaoEstadual) {
         this.inscricaoEstadual = inscricaoEstadual;
     }
+
+    public int getIdCliente() {
+        return idCliente;
+    }
+
+    public void setIdCliente(int idCliente) {
+        this.idCliente = idCliente;
+    }
+
 }

@@ -10,19 +10,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ImpressaoOrcamento {
-    
+
     public static void imprimir() {
-       iReportCodigo impressao = new iReportCodigo();
-       List listaDados = GetDados();
-       impressao.Imprime_Relatorio(listaDados);
+        iReportCodigo impressao = new iReportCodigo();
+        List listaDados = GetDados();
+        impressao.Imprime_Relatorio(listaDados);
     }
-    
+
     public static List GetDados() {
         List lista = new ArrayList();
         lista.clear();
         lista = Listas.lista;
-        
+
         return lista;
     }
-    
+
 }

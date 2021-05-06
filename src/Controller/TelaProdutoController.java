@@ -1,5 +1,10 @@
 package Controller;
 
+import BD.Conexoes;
+import BD.Delete;
+import BD.Insert;
+import BD.Pesquisar;
+import BD.Update;
 import Gerenciadores.GerenciadorDeTelas;
 import Gerenciadores.GerenciadorListaOrcamento;
 import Jasper.SaidaDados;
@@ -26,7 +31,7 @@ import javax.swing.JOptionPane;
 import sistemaamerico.TelaProdutos;
 
 public class TelaProdutoController implements Initializable {
-    
+
     @FXML
     private TableView<Produto> tbProdutos;
 
@@ -97,31 +102,45 @@ public class TelaProdutoController implements Initializable {
     private Button btExcluir;
 
     @FXML
-    private Button btSalvarOrcamento;
+    private MenuItem miMenu;
 
     @FXML
-    private MenuItem miMenu;
-    
+    private MenuItem imCarregarOrcamento;
+
     @FXML
     private Label lbValorTotal;
+    
+    @FXML
+    private Label lbNomeCliente;
 
+    @FXML
+    private Label lbCnpj;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
-       btOrcamento.setOnMouseClicked((MouseEvent e) -> {
+
+        btOrcamento.setOnMouseClicked((MouseEvent e) -> {
             entradaDadosCliente();
         });
-       btAdicionarProdutoOrcamento.setOnMouseClicked((MouseEvent e) -> {
-            adicionarProdutoOrcamento();
+        btAdicionarProdutoOrcamento.setOnMouseClicked((MouseEvent e) -> {
+            adicionarProdutoOrcamento(1,0);
+        });
+        btIncrementar.setOnMouseClicked((MouseEvent e) -> {
+            adicionarProdutoOrcamento(2,1);
+        });
+        btDecrementar.setOnMouseClicked((MouseEvent e) -> {
+            adicionarProdutoOrcamento(3,2);
+        });
+        btExcluir.setOnMouseClicked((MouseEvent e) -> {
+            adicionarProdutoOrcamento(4,0);
         });
         tbProdutosOrcamento.setItems(ObsMetodo());
         tbClienteOrcamento.setItems(ObsMetodoCliente());
         iniciarInitTabela();
         iniciarInitTabelaCliente();
         valorTotal();
-    }    
-    
+    }
+
     private void iniciarInitTabela() {
         clmCodigoOrcamento.setCellValueFactory(new PropertyValueFactory("codigo"));
         clmDescricaoOrcamento.setCellValueFactory(new PropertyValueFactory("descricao"));
@@ -129,31 +148,31 @@ public class TelaProdutoController implements Initializable {
         clmPrecoOrcamento.setCellValueFactory(new PropertyValueFactory("preco"));
         clmPrecoTotalOrcamento.setCellValueFactory(new PropertyValueFactory("PrecoTotal"));
     }
-    
+
     private ObservableList<Produto> ObsMetodo() {
         ObservableList<Produto> obs = FXCollections.observableArrayList();
-            for (Produto t : Listas.listOrcamento) {
-                obs.add(new Produto(t.getCodigo(), t.getDescricao(), t.getPreco(), t.getPrecoTotal(), t.getIpi(),
-                        t.getQuantidade()));
-		}
-		return obs;
-	}
-    
+        for (Produto t : Listas.listOrcamento) {
+            obs.add(new Produto(t.getCodigo(), t.getDescricao(), t.getPreco(), t.getPrecoTotal(), t.getIpi(),
+                    t.getQuantidade()));
+        }
+        return obs;
+    }
+
     private void iniciarInitTabelaCliente() {
         clmCliente.setCellValueFactory(new PropertyValueFactory("nome"));
         clmCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
         clmTelefone.setCellValueFactory(new PropertyValueFactory("numero"));
         clmResponsavel.setCellValueFactory(new PropertyValueFactory("responsavel"));
     }
-    
+
     private ObservableList<Cliente> ObsMetodoCliente() {
         ObservableList<Cliente> obs1 = FXCollections.observableArrayList();
-            for (Cliente t : Listas.listCliente) {
-                obs1.add(new Cliente(t.getNome(), t.getCnpj(), t.getNumero(), t.getCidade(), t.getResponsavel()));
-		}
-		return obs1;
-	}
-    
+        for (Cliente t : Listas.listCliente) {
+            obs1.add(new Cliente(t.getNome(), t.getCnpj(), t.getNumero(), t.getCidade(), t.getResponsavel()));
+        }
+        return obs1;
+    }
+
     private void iniciarInitAmalcaburio() {
         clmCodigo.setCellValueFactory(new PropertyValueFactory("codigo"));
         clmDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
@@ -161,7 +180,8 @@ public class TelaProdutoController implements Initializable {
         clmPreco.setCellValueFactory(new PropertyValueFactory("preco"));
     }
 
-    @FXML private void onBtPesquisarCodigo() {
+    @FXML
+    private void onBtPesquisarCodigo() {
         try {
             String i = tfPesquisar.getText();
             for (Produto t : Listas.listProduto) {
@@ -180,105 +200,79 @@ public class TelaProdutoController implements Initializable {
         String i = tfPesquisar.getText();
         for (Produto t : Listas.listProduto) {
             if (t.getCodigo().toUpperCase().contains(i.toUpperCase())) {
-                obsPesquisa.add(new Produto(t.getCodigo(), t.getDescricao(), t.getPreco(), t.getIpi()));
+                obsPesquisa.add(new Produto(t.getCodigo(), t.getDescricao(), t.getPreco(), t.getIpi(), t.getIdProduto()));
             }
         }
         return obsPesquisa;
     }
-    
-    private void adicionarProdutoOrcamento() {
+
+    //Adiciona Item no Banco de dados table_orcamento
+    private void adicionarProdutoOrcamento(int decisao, int addORremove) {
+        String cnpj = tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj();
         try {
-        int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade"));
-        String codigo = tbProdutos.getSelectionModel().getSelectedItem().getCodigo();
-        String descricao = tbProdutos.getSelectionModel().getSelectedItem().getDescricao();
-        double preco = tbProdutos.getSelectionModel().getSelectedItem().getPreco();
-        int ipi = tbProdutos.getSelectionModel().getSelectedItem().getIpi();
-        double precoTotal = tbProdutos.getSelectionModel().getSelectedItem().getPreco();
-        Gerenciadores.GerenciadorListaOrcamento.adicionarProdutoOrcamento(quantidade, codigo, descricao, preco, ipi, precoTotal);
-        tbProdutosOrcamento.setItems(ObsMetodo());
-        iniciarInitTabela();
-        valorTotal();
+            switch (decisao) {
+                //Adiciona ao orcamento
+                case 1:
+                    String codigo = tbProdutos.getSelectionModel().getSelectedItem().getCodigo();
+                    int quantidade = Integer.parseInt(JOptionPane.showInputDialog("Quantidade"));
+                    //Insere no table_orcamento o item com o respectivo cliente
+                    Insert.inserirOrcamento(cnpj, codigo, quantidade);
+                    break;
+                //Incrementa no orcamento
+                case 2:
+                    String codigoOrcamentoADD = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
+                    int quantidade1 = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
+                    //Atualiza a quantidade de item
+                    Update.atualizarQuantProduto(Integer.parseInt(Pesquisar.retornaIdProduto(codigoOrcamentoADD)),
+                            Pesquisar.retornaIdCliente(cnpj), quantidade1, 1);
+                    Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
+                    break;
+                //Decrementa Produto
+                case 3:
+                    String codigoOrcamentoRem = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
+                    int quantidadeRem = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
+                    //Atualiza a quantidade de item
+                    Update.atualizarQuantProduto(Integer.parseInt(Pesquisar.retornaIdProduto(codigoOrcamentoRem)),
+                            Pesquisar.retornaIdCliente(cnpj), quantidadeRem, 2);
+                    Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
+                    break;
+                    
+                case 4:
+                    String codigoOrcamentoEx = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
+                    Delete.deletarProdutoOrcamento(Integer.parseInt(Pesquisar.retornaIdProduto(codigoOrcamentoEx)), 
+                            Pesquisar.retornaIdCliente(cnpj));
+            }
         } catch (NullPointerException e) {
-            Alertas.showAlert("Nenhum Item Selecionado", "Selecionar item para adicionar ao orçamento", "", Alert.AlertType.INFORMATION);
+            Alertas.showAlert("Erro", "Nenhum Item Selecionado", "Selecione o produto que deseja diminuir", Alert.AlertType.INFORMATION);
+        } finally {
+            atualizarTabela(cnpj);
         }
     }
-    
-    @FXML
-    public void onBtActionAdicionarProduto() {
-        try {
-            String codigo = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
-            String descricao = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getDescricao();
-            double preco = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPreco();
-            int quantidade = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
-            double total = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPrecoTotal();
-            GerenciadorListaOrcamento.incrementarProduto(codigo, descricao, preco, quantidade, total);
-            GerenciadorListaOrcamento.addProdutoArquivoOrcamento();
-            tbProdutosOrcamento.setItems(ObsMetodo());
-            valorTotal();
-        } catch (java.lang.RuntimeException e){
-            Alertas.showAlert("Erro", "Nenhum Item Selecionado", "Selecione o produto que deseja adicionar", Alert.AlertType.INFORMATION);
-        } 
-        }
-        
-    
-    @FXML
-    public void onBtActionDecrementarProduto() {
-        try {
-            String codigo = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
-            String descricao = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getDescricao();
-            double preco = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPreco();
-            int quantidade = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
-            double total = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPrecoTotal();
-            GerenciadorListaOrcamento.decrementarProduto(codigo, descricao, preco, quantidade, total);
-            GerenciadorListaOrcamento.addProdutoArquivoOrcamento();
-            tbProdutosOrcamento.setItems(ObsMetodo());
-            valorTotal();
-        } catch (java.lang.RuntimeException e){
-            Alertas.showAlert("Erro", "Nenhum Item Selecionado", "Selecione o produto que deseja diminuir", Alert.AlertType.INFORMATION);
-        }
-        }
-    
-    @FXML
-    public void onBtActionRemoverProduto() {
-        try {
-            String codigo = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
-            String descricao = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getDescricao();
-            double preco = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPreco();
-            int quantidade = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
-            double total = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getPrecoTotal();
-            GerenciadorListaOrcamento.removerProduto(codigo, descricao, preco, quantidade, total);
-            GerenciadorListaOrcamento.addProdutoArquivoOrcamento();
-            tbProdutosOrcamento.setItems(ObsMetodo());
-            valorTotal();
-        } catch (java.lang.RuntimeException e){
-            Alertas.showAlert("Erro", "Nenhum Item Selecionado", "Selecione o produto que deseja remover", Alert.AlertType.INFORMATION);
-        }
-        }
-    
+
     private void entradaDadosCliente() {
         Listas.lista.clear();
         try {
-        double total = 0;
-        for (Produto produto : Listas.listOrcamento) {
-            total = total + produto.getPrecoTotal();
-        }
-        SaidaDados sd = new SaidaDados();
-        String cnpj = tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj();
-        sd.setValorTotal(total);
-        for (Cliente i : Listas.listCliente) {
-            if (i.getCnpj().equalsIgnoreCase(cnpj)) {  
-            sd.setCliente(i.getNome());
-            sd.setCnpj(i.getCnpj());
-            sd.setEndereco(i.getEndereco());
-            sd.setEmail(i.getEmail());
-            sd.setNumero(i.getNumero());
-            sd.setCidade(i.getCidade());
-            sd.setCep(i.getCep());
-            sd.setUf(i.getUf());
-            sd.setIe(i.getInscricaoEstadual());
+            double total = 0;
+            for (Produto produto : Listas.listOrcamento) {
+                total = total + produto.getPrecoTotal();
             }
-        }
-        for (Produto e : Listas.listOrcamento) {
+            SaidaDados sd = new SaidaDados();
+            String cnpj = tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+            sd.setValorTotal(total);
+            for (Cliente i : Listas.listCliente) {
+                if (i.getCnpj().equalsIgnoreCase(cnpj)) {
+                    sd.setCliente(i.getNome());
+                    sd.setCnpj(i.getCnpj());
+                    sd.setEndereco(i.getEndereco());
+                    sd.setEmail(i.getEmail());
+                    sd.setNumero(i.getNumero());
+                    sd.setCidade(i.getCidade());
+                    sd.setCep(i.getCep());
+                    sd.setUf(i.getUf());
+                    sd.setIe(i.getInscricaoEstadual());
+                }
+            }
+            for (Produto e : Listas.listOrcamento) {
                 //String codigo, String descricao, double precoUni, double PrecoTotalUni, int quantidade
                 Listas.lista.add(new SaidaDados(e.getCodigo(), e.getDescricao(), e.getPreco(), e.getPrecoTotal(), e.getQuantidade()));
             }
@@ -287,19 +281,35 @@ public class TelaProdutoController implements Initializable {
             Alertas.showAlert("Cliente não selecionado", "Nenhum Cliente Selecionado", "Selecione Um cliente da lista para gerar o arquivo", Alert.AlertType.INFORMATION);
         }
     }
-    
+
     @FXML
     private void onBtActionMenu() {
         Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
         TelaProdutos.getStage().close();
     }
-    
-    public void valorTotal() {
+
+    @FXML
+    private void onBtCarregarOrcamento() {
+        int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Codigo Cliente"));
+        Pesquisar.pesquisarOrcamento(idCliente);
+        lbCnpj.setText(Pesquisar.retornaCliente(idCliente).getCnpj());
+        lbNomeCliente.setText(Pesquisar.retornaCliente(idCliente).getNome());
+        atualizarTabela(Pesquisar.retornaCliente(idCliente).getCnpj());
+        valorTotal();
+    }
+
+    private void valorTotal() {
         double total = 0;
         for (Produto produto : Listas.listOrcamento) {
             total = total + produto.getPrecoTotal();
         }
-       lbValorTotal.setText(String.valueOf(total));
+        lbValorTotal.setText(String.valueOf(total));
     }
     
+    private void atualizarTabela(String cnpj) {
+        Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
+        tbProdutosOrcamento.setItems(ObsMetodo());
+        valorTotal();
+    }
+
 }

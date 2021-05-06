@@ -1,14 +1,14 @@
 package Model;
 
 public class Produto {
-    
+
     String codigo;
     String descricao;
     double preco;
     double PrecoTotal;
-    int ipi;
+    int ipi, idProduto;
     int quantidade;
-    
+
     public Produto(int quantidade, String codigo, String descricao, double preco, int ipi) {
         this.quantidade = quantidade;
         this.codigo = codigo;
@@ -16,12 +16,13 @@ public class Produto {
         this.preco = preco;
         this.ipi = ipi;
     }
-    
-    public Produto(String codigo, String descricao, double preco, int ipi) {
+
+    public Produto(String codigo, String descricao, double preco, int ipi, int idProduto) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.preco = preco;
         this.ipi = ipi;
+        this.idProduto = idProduto;
     }
 
     public Produto(String codigo, String descricao, double preco, double PrecoTotal, int ipi, int quantidade) {
@@ -30,6 +31,16 @@ public class Produto {
         this.preco = preco;
         this.PrecoTotal = PrecoTotal;
         this.ipi = ipi;
+        this.quantidade = quantidade;
+    }
+
+    public Produto(String codigo, String descricao, double preco, double PrecoTotal, int ipi, int idProduto, int quantidade) {
+        this.codigo = codigo;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.PrecoTotal = PrecoTotal;
+        this.ipi = ipi;
+        this.idProduto = idProduto;
         this.quantidade = quantidade;
     }
 
@@ -80,4 +91,13 @@ public class Produto {
     public void setQuantidade(int quantidade) {
         this.quantidade = quantidade;
     }
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
 }

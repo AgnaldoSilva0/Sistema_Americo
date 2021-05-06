@@ -20,16 +20,16 @@ import net.sf.jasperreports.view.JasperViewer;
  * @author Usuario
  */
 public class iReportCodigo {
-    
+
     public void Imprime_Relatorio(List lista) {
         String caminhoReIJasper = "/Jasper/Americo.jasper";
-        
+
         InputStream relJasper = getClass().getResourceAsStream(caminhoReIJasper);
         JRBeanCollectionDataSource ds = new JRBeanCollectionDataSource(lista);
-        
+
         Map parametros = new HashMap();
         JasperPrint impressao = null;
-        
+
         try {
             impressao = JasperFillManager.fillReport(relJasper, parametros, ds);
             JasperViewer viewer = new JasperViewer(impressao, false);
@@ -37,7 +37,7 @@ public class iReportCodigo {
         } catch (JRException e) {
             System.out.println(e.getMessage());
         }
-        
+
     }
-    
+
 }

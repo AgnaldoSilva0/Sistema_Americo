@@ -18,11 +18,11 @@ import javafx.stage.Stage;
  * @author Usuario
  */
 public class TelaProdutos extends Application {
-    
+
     private static Stage stage;
-    
+
     public static void main(String[] args) {
-       launch(args);
+        launch(args);
     }
 
     @Override
@@ -36,6 +36,7 @@ public class TelaProdutos extends Application {
         stage.show();
         setStage(stage);
     }
+
     public static Stage getStage() {
         return stage;
     }

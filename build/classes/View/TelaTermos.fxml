@@ -7,12 +7,12 @@
 
 
 <AnchorPane id="AnchorPane" prefHeight="455.0" prefWidth="409.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="Controller.TelaTermosController">
-   <children>
-      <TextArea layoutX="10.0" layoutY="52.0" prefHeight="390.0" prefWidth="389.0" text="Termos de Uso:&#10;&#10;Uso não comercial;&#10;Proibido a distribuição, alteração de métodos e funções BD internas;&#10;Software com intuito apenas de praticidade.&#10;&#10;Alterações de preços e normas podem ocorrer de acordo com as &#10;politicas da empresa Irmãos Amalcaburio.&#10;Fica por total responsabilidade do usuário a constante atualização com&#10;o representante em relação a preços.&#10;Não nos responsabilizamos por alterações não informadas.&#10;Não nos responsabilizamos por alterações no BD por parte do Usuário.&#10;Ao utilizar o Software, o Usuario concorda com todos os termos acima.&#10;&#10;Especicações de BD: Format TXT&#10;Última Atualização de Preços: Fevereiro/2021&#10;&#10;Sugestões, dúvidas ou outros:&#10;Agnaldo Silva&#10;Fone: (79) 9 9651-0347&#10;E-mail: agnaldo.santos24@hotmail.com" />
-      <Label layoutX="145.0" layoutY="14.0" text="Termos de Uso" underline="true">
-         <font>
-            <Font name="System Bold Italic" size="18.0" />
-         </font>
-      </Label>
-   </children>
+    <children>
+        <TextArea layoutX="10.0" layoutY="52.0" prefHeight="390.0" prefWidth="389.0" text="Termos de Uso:&#10;&#10;Uso não comercial;&#10;Proibido a distribuição, alteração de métodos e funções BD internas;&#10;Software com intuito apenas de praticidade.&#10;&#10;Alterações de preços e normas podem ocorrer de acordo com as &#10;politicas da empresa Irmãos Amalcaburio.&#10;Fica por total responsabilidade do usuário a constante atualização com&#10;o representante em relação a preços.&#10;Não nos responsabilizamos por alterações não informadas.&#10;Não nos responsabilizamos por alterações no BD por parte do Usuário.&#10;Ao utilizar o Software, o Usuario concorda com todos os termos acima.&#10;&#10;Especicações de BD: Format TXT&#10;Última Atualização de Preços: Fevereiro/2021&#10;&#10;Sugestões, dúvidas ou outros:&#10;Agnaldo Silva&#10;Fone: (79) 9 9651-0347&#10;E-mail: agnaldo.santos24@hotmail.com" />
+        <Label layoutX="145.0" layoutY="14.0" text="Termos de Uso" underline="true">
+            <font>
+                <Font name="System Bold Italic" size="18.0" />
+            </font>
+        </Label>
+    </children>
 </AnchorPane>

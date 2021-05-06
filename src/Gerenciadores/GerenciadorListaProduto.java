@@ -9,7 +9,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GerenciadorListaProduto {
-    
+
+    //Banco TXT
     public static void carregarProduto() {
         String patch = "C:\\BDs\\BDAmalcaburio.txt";
         int contador = 1;
@@ -21,7 +22,7 @@ public class GerenciadorListaProduto {
                 String descricao = (vectLeitor[1]);
                 double preco = Double.parseDouble(vectLeitor[2]);
                 int ipi = Integer.parseInt(vectLeitor[3]);
-                Listas.listProduto.add(new Produto(codigo, descricao, preco, ipi));
+                //Listas.listProduto.add(new Produto(codigo, descricao, preco, ipi));
                 linhaProduto = br.readLine();
                 contador = contador + 1;
                 System.out.println(contador);
@@ -32,7 +33,8 @@ public class GerenciadorListaProduto {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    //Banco TXT
     public static void addProduto() {
         String patch = "C:\\BDs\\BDAmalcaburio.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(patch))) {
@@ -44,10 +46,10 @@ public class GerenciadorListaProduto {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public static void cadastrarProduto(String codigo, String descricao, double preco, int ipi) {
-        Listas.listProduto.add(new Produto(codigo, descricao, preco, ipi));
+        //Listas.listProduto.add(new Produto(codigo, descricao, preco, ipi));
         addProduto();
     }
-    
+
 }

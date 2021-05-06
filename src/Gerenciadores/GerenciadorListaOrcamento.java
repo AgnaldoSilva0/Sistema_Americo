@@ -9,7 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GerenciadorListaOrcamento {
-    
+
     public static void carregarOrcamento() {
         String patch = "C:\\BDs\\BDOrcamento.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(patch))) {
@@ -30,12 +30,12 @@ public class GerenciadorListaOrcamento {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public static void addProdutoArquivoOrcamento() {
         String patch = "C:\\BDs\\BDOrcamento.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(patch))) {
             for (Produto produto : Listas.listOrcamento) {
-                bw.write(produto.getQuantidade() + ";" + produto.getCodigo() + ";" + produto.getDescricao() 
+                bw.write(produto.getQuantidade() + ";" + produto.getCodigo() + ";" + produto.getDescricao()
                         + ";" + produto.getPreco() + ";" + produto.getIpi() + ";" + produto.getPrecoTotal());
                 bw.newLine();
             }
@@ -43,9 +43,9 @@ public class GerenciadorListaOrcamento {
             System.out.println(e.getMessage());
         }
     }
-    
+
     public static void adicionarProdutoOrcamento(int quantidade, String codigo, String descricao, double preco, int ipi, double precoTotal) {
-        for (Produto i : Listas.listOrcamento){
+        for (Produto i : Listas.listOrcamento) {
             if (i.getCodigo().equalsIgnoreCase(codigo)) {
                 i.setQuantidade(quantidade + i.getQuantidade());
                 i.setPrecoTotal(i.getPreco() * i.getQuantidade());
@@ -57,7 +57,7 @@ public class GerenciadorListaOrcamento {
         Listas.listOrcamento.add(new Produto(codigo, descricao, preco, precoTotal, ipi, quantidade));
         addProdutoArquivoOrcamento();
     }
-    
+
     public static void incrementarProduto(String codigo, String descricao, double preco, int quantidade, double total) {
         for (Produto produto : Listas.listOrcamento) {
             if (produto.getCodigo().toUpperCase().equals(codigo.toUpperCase())) {
@@ -67,7 +67,7 @@ public class GerenciadorListaOrcamento {
             }
         }
     }
-    
+
     public static void decrementarProduto(String codigo, String descricao, double preco, int quantidade, double total) {
         for (Produto produto : Listas.listOrcamento) {
             if (produto.getCodigo().toUpperCase().equals(codigo.toUpperCase())) {
@@ -77,7 +77,7 @@ public class GerenciadorListaOrcamento {
             }
         }
     }
-    
+
     public static void removerProduto(String codigo, String descricao, double preco, int quantidade, double total) {
         for (Produto produto : Listas.listOrcamento) {
             if (produto.getCodigo().toUpperCase().equals(codigo.toUpperCase())) {
@@ -86,5 +86,5 @@ public class GerenciadorListaOrcamento {
             }
         }
     }
-    
+
 }

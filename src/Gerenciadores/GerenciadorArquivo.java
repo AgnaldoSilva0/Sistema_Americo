@@ -21,10 +21,10 @@ import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
 public class GerenciadorArquivo {
-    
-    public static void salvarArquivoOrcamento(String nome, String cnpj, String endereco, String email, String numero, 
-        String cidade, String cep, String uf, String responsavel, String inscricaoEstadual) {
-        
+
+    public static void salvarArquivoOrcamento(String nome, String cnpj, String endereco, String email, String numero,
+            String cidade, String cep, String uf, String responsavel, String inscricaoEstadual) {
+
         String condicaoPagamento = JOptionPane.showInputDialog("Condição de Pagamento");
         String transportadora = JOptionPane.showInputDialog("Transportadora");
         String desconto = JOptionPane.showInputDialog("Desconto");
@@ -77,8 +77,5 @@ public class GerenciadorArquivo {
             Alertas.showAlert("Cancelado", "Nenhum item foi salvo", "Cancelado com Sucesso", Alert.AlertType.INFORMATION);
         }
     }
-    
-    
-    
-    }
-    
+
+}

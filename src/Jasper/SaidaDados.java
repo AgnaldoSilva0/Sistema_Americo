@@ -10,7 +10,7 @@ package Jasper;
  * @author Usuario
  */
 public class SaidaDados {
-    
+
     String codigo;
     String descricao;
     double precoUni;
@@ -183,6 +183,4 @@ public class SaidaDados {
         this.valorTotal = valorTotal;
     }
 
-    
-    
 }

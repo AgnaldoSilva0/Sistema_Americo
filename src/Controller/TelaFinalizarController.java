@@ -38,20 +38,19 @@ public class TelaFinalizarController implements Initializable {
     @FXML
     private Button brFinalizar;
 
-    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        
-    }    
-    
+
+    }
+
     @FXML
     private void onBtActionFinalizar() {
         SaidaDados sd = new SaidaDados();
-        sd.setPagamento(tfPagamento.getText()); 
+        sd.setPagamento(tfPagamento.getText());
         sd.setTransportadora(tfTransportadora.getText());
         sd.setDesconto(tfDesconto.getText());
         sd.setObservacao(tfObservacoes.getText());
         ImpressaoOrcamento.imprimir();
     }
-    
+
 }

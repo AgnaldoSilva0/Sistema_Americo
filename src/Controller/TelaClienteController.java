@@ -46,21 +46,21 @@ public class TelaClienteController implements Initializable {
 
     @FXML
     private Button btPesquisarCliente;
-    
+
     @FXML
     private Button btMenu;
 
     @FXML
     private TextField tfPesquisarCliente;
-    
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         btMenu.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
             TelaClientes.getStage().close();
         });
-    }    
-    
+    }
+
     private void iniciarInitAmalcaburio() {
         clmNome.setCellValueFactory(new PropertyValueFactory("nome"));
         clmCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
@@ -69,7 +69,8 @@ public class TelaClienteController implements Initializable {
         clmResponsavel.setCellValueFactory(new PropertyValueFactory("responsavel"));
     }
 
-    @FXML private void onBtPesquisar() {
+    @FXML
+    private void onBtPesquisar() {
         try {
             String i = tfPesquisarCliente.getText();
             for (Cliente t : Listas.listCliente) {
@@ -93,5 +94,5 @@ public class TelaClienteController implements Initializable {
         }
         return obsPesquisa;
     }
-    
+
 }

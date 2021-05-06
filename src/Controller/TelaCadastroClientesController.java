@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import BD.Insert;
 import Gerenciadores.GerenciadorListaCliente;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -16,7 +17,7 @@ import javafx.scene.input.MouseEvent;
 import sistemaamerico.TelaCadastroCliente;
 
 public class TelaCadastroClientesController implements Initializable {
-    
+
     @FXML
     private TextField tfNome;
 
@@ -49,7 +50,7 @@ public class TelaCadastroClientesController implements Initializable {
 
     @FXML
     private Button btCadastarCliente;
-    
+
     @FXML
     private Button btMenu;
 
@@ -62,8 +63,8 @@ public class TelaCadastroClientesController implements Initializable {
         btCadastarCliente.setOnMouseClicked((MouseEvent e) -> {
             cadastrarCliente();
         });
-    }   
-    
+    }
+
     private void cadastrarCliente() {
         String nome = tfNome.getText();
         String cnpj = tfCnpj.getText();
@@ -75,10 +76,10 @@ public class TelaCadastroClientesController implements Initializable {
         String email = tfEmail.getText();
         String telefone = tfTelefone.getText();
         String responsavel = tfResponsavel.getText();
-        GerenciadorListaCliente.cadastrarCliente(nome, cnpj, endereco, email, telefone, cidade, cep, estado, responsavel, ie);
+        Insert.inserirCliente(nome, cnpj, endereco, email, telefone, cidade, cep, estado, responsavel, ie);
         limparCampos();
     }
-    
+
     private void limparCampos() {
         tfNome.setText("N/A");
         tfCnpj.setText("N/A");
@@ -91,5 +92,5 @@ public class TelaCadastroClientesController implements Initializable {
         tfResponsavel.setText("N/A");
         tfTelefone.setText("N/A");
     }
-    
+
 }

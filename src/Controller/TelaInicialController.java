@@ -11,7 +11,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 public class TelaInicialController implements Initializable {
-    
+
     @FXML
     private Button btOrcamento;
 
@@ -26,10 +26,10 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private Button btCadastrarProduto;
-    
+
     @FXML
     private Button btCadastrarCliente;
-    
+
     @FXML
     private ImageView imgLogoM;
 
@@ -40,7 +40,7 @@ public class TelaInicialController implements Initializable {
         btCadastrarProduto.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.abrirTelaCadastroProduto();
         });
-        
+
         btOrcamento.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.abrirTelaProduto();
         });
@@ -53,7 +53,7 @@ public class TelaInicialController implements Initializable {
         btTermos.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.abrirTelaTermos();
         });
-        
-    }    
-    
+
+    }
+
 }

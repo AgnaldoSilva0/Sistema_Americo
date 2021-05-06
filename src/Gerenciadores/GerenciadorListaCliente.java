@@ -11,7 +11,8 @@ import java.io.IOException;
 import javafx.scene.control.Alert;
 
 public class GerenciadorListaCliente {
-    
+
+    //Banco TXT
     public static void carregarCliente() {
         String patch = "C:\\BDs\\BDCliente.txt";
         try (BufferedReader br = new BufferedReader(new FileReader(patch))) {
@@ -36,25 +37,26 @@ public class GerenciadorListaCliente {
             System.out.println(e.getMessage());
         }
     }
-    
+
+    //Banco TXT
     public static void addCliente() {
         String patch = "C:\\BDs\\BDCliente.txt";
         try (BufferedWriter bw = new BufferedWriter(new FileWriter(patch))) {
             for (Cliente c : Listas.listCliente) {
-                bw.write(c.getNome() + ";" + c.getCnpj() + ";" + c.getEndereco() + ";" + c.getEmail() + ";" + c.getNumero() +
-                        ";" + c.getCidade() + ";" + c.getCep() + ";" + c.getUf() + ";" + c.getResponsavel() + ";" + c.getInscricaoEstadual());
+                bw.write(c.getNome() + ";" + c.getCnpj() + ";" + c.getEndereco() + ";" + c.getEmail() + ";" + c.getNumero()
+                        + ";" + c.getCidade() + ";" + c.getCep() + ";" + c.getUf() + ";" + c.getResponsavel() + ";" + c.getInscricaoEstadual());
                 bw.newLine();
             }
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }
     }
-    
-    public static void cadastrarCliente(String nome, String cnpj, String endereco, String email, String numero, 
-        String cidade, String cep, String uf, String responsavel, String ie) {
+
+    public static void cadastrarCliente(String nome, String cnpj, String endereco, String email, String numero,
+            String cidade, String cep, String uf, String responsavel, String ie) {
         Listas.listCliente.add(new Cliente(nome, cnpj, endereco, email, numero, cidade, cep, uf, responsavel, ie));
         addCliente();
         Alertas.showAlert("Sucesso", "Cliente cadastrado", nome, Alert.AlertType.CONFIRMATION);
     }
-    
+
 }
