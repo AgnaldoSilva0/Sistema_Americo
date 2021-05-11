@@ -111,7 +111,7 @@ public class Insert {
 
     }
 
-    //Adiciona e Atualiza NÃO ESTÁ EM USO
+    //Adiciona e Atualiza NÃO ESTÁ EM USO (PONTO DE REFERENCIA)
     public static void salvarOrcamento(int idCliente) {
         Connection conn = null;
         PreparedStatement ps = null;

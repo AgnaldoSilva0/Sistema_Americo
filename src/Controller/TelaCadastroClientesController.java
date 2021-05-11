@@ -6,7 +6,6 @@
 package Controller;
 
 import BD.Insert;
-import Gerenciadores.GerenciadorListaCliente;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;

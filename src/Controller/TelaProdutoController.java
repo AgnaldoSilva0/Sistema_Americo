@@ -1,12 +1,10 @@
 package Controller;
 
-import BD.Conexoes;
 import BD.Delete;
 import BD.Insert;
 import BD.Pesquisar;
 import BD.Update;
 import Gerenciadores.GerenciadorDeTelas;
-import Gerenciadores.GerenciadorListaOrcamento;
 import Jasper.SaidaDados;
 import Limitadores.Alertas;
 import Model.Cliente;
@@ -109,7 +107,7 @@ public class TelaProdutoController implements Initializable {
 
     @FXML
     private Label lbValorTotal;
-    
+
     @FXML
     private Label lbNomeCliente;
 
@@ -118,21 +116,20 @@ public class TelaProdutoController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
         btOrcamento.setOnMouseClicked((MouseEvent e) -> {
             entradaDadosCliente();
         });
         btAdicionarProdutoOrcamento.setOnMouseClicked((MouseEvent e) -> {
-            adicionarProdutoOrcamento(1,0);
+            adicionarProdutoOrcamento(1, 0);
         });
         btIncrementar.setOnMouseClicked((MouseEvent e) -> {
-            adicionarProdutoOrcamento(2,1);
+            adicionarProdutoOrcamento(2, 1);
         });
         btDecrementar.setOnMouseClicked((MouseEvent e) -> {
-            adicionarProdutoOrcamento(3,2);
+            adicionarProdutoOrcamento(3, 2);
         });
         btExcluir.setOnMouseClicked((MouseEvent e) -> {
-            adicionarProdutoOrcamento(4,0);
+            adicionarProdutoOrcamento(4, 0);
         });
         tbProdutosOrcamento.setItems(ObsMetodo());
         tbClienteOrcamento.setItems(ObsMetodoCliente());
@@ -141,6 +138,7 @@ public class TelaProdutoController implements Initializable {
         valorTotal();
     }
 
+    //Referencia objeto a tabela
     private void iniciarInitTabela() {
         clmCodigoOrcamento.setCellValueFactory(new PropertyValueFactory("codigo"));
         clmDescricaoOrcamento.setCellValueFactory(new PropertyValueFactory("descricao"));
@@ -149,6 +147,7 @@ public class TelaProdutoController implements Initializable {
         clmPrecoTotalOrcamento.setCellValueFactory(new PropertyValueFactory("PrecoTotal"));
     }
 
+    //Retorna lista para preencher tabela
     private ObservableList<Produto> ObsMetodo() {
         ObservableList<Produto> obs = FXCollections.observableArrayList();
         for (Produto t : Listas.listOrcamento) {
@@ -157,7 +156,8 @@ public class TelaProdutoController implements Initializable {
         }
         return obs;
     }
-
+    
+    //Referencia objeto a tabela
     private void iniciarInitTabelaCliente() {
         clmCliente.setCellValueFactory(new PropertyValueFactory("nome"));
         clmCnpj.setCellValueFactory(new PropertyValueFactory("cnpj"));
@@ -165,6 +165,7 @@ public class TelaProdutoController implements Initializable {
         clmResponsavel.setCellValueFactory(new PropertyValueFactory("responsavel"));
     }
 
+    //Retorna lista para preencher tabela
     private ObservableList<Cliente> ObsMetodoCliente() {
         ObservableList<Cliente> obs1 = FXCollections.observableArrayList();
         for (Cliente t : Listas.listCliente) {
@@ -172,7 +173,8 @@ public class TelaProdutoController implements Initializable {
         }
         return obs1;
     }
-
+    
+    //Referencia objeto a tabela
     private void iniciarInitAmalcaburio() {
         clmCodigo.setCellValueFactory(new PropertyValueFactory("codigo"));
         clmDescricao.setCellValueFactory(new PropertyValueFactory("descricao"));
@@ -180,6 +182,7 @@ public class TelaProdutoController implements Initializable {
         clmPreco.setCellValueFactory(new PropertyValueFactory("preco"));
     }
 
+    //Metodo para pesquisar item
     @FXML
     private void onBtPesquisarCodigo() {
         try {
@@ -195,6 +198,7 @@ public class TelaProdutoController implements Initializable {
         }
     }
 
+    //Retorna lista para preencher tabela
     private ObservableList<Produto> Busca() {
         ObservableList<Produto> obsPesquisa = FXCollections.observableArrayList();
         String i = tfPesquisar.getText();
@@ -206,9 +210,9 @@ public class TelaProdutoController implements Initializable {
         return obsPesquisa;
     }
 
-    //Adiciona Item no Banco de dados table_orcamento
+    //Adiciona, atualiza, exclui Item no Banco de dados table_orcamento
     private void adicionarProdutoOrcamento(int decisao, int addORremove) {
-        String cnpj = tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+        String cnpj = lbCnpj.getText();
         try {
             switch (decisao) {
                 //Adiciona ao orcamento
@@ -227,7 +231,7 @@ public class TelaProdutoController implements Initializable {
                             Pesquisar.retornaIdCliente(cnpj), quantidade1, 1);
                     Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
                     break;
-                //Decrementa Produto
+                //Decrementa Produto orçamento
                 case 3:
                     String codigoOrcamentoRem = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
                     int quantidadeRem = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getQuantidade();
@@ -236,10 +240,10 @@ public class TelaProdutoController implements Initializable {
                             Pesquisar.retornaIdCliente(cnpj), quantidadeRem, 2);
                     Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
                     break;
-                    
+                //Deleta produto orçamento
                 case 4:
                     String codigoOrcamentoEx = tbProdutosOrcamento.getSelectionModel().getSelectedItem().getCodigo();
-                    Delete.deletarProdutoOrcamento(Integer.parseInt(Pesquisar.retornaIdProduto(codigoOrcamentoEx)), 
+                    Delete.deletarProdutoOrcamento(Integer.parseInt(Pesquisar.retornaIdProduto(codigoOrcamentoEx)),
                             Pesquisar.retornaIdCliente(cnpj));
             }
         } catch (NullPointerException e) {
@@ -249,6 +253,7 @@ public class TelaProdutoController implements Initializable {
         }
     }
 
+    //Preenche a lista que será usada para imprimir os dados no jasper
     private void entradaDadosCliente() {
         Listas.lista.clear();
         try {
@@ -257,7 +262,7 @@ public class TelaProdutoController implements Initializable {
                 total = total + produto.getPrecoTotal();
             }
             SaidaDados sd = new SaidaDados();
-            String cnpj = tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+            String cnpj = lbCnpj.getText();
             sd.setValorTotal(total);
             for (Cliente i : Listas.listCliente) {
                 if (i.getCnpj().equalsIgnoreCase(cnpj)) {
@@ -273,7 +278,6 @@ public class TelaProdutoController implements Initializable {
                 }
             }
             for (Produto e : Listas.listOrcamento) {
-                //String codigo, String descricao, double precoUni, double PrecoTotalUni, int quantidade
                 Listas.lista.add(new SaidaDados(e.getCodigo(), e.getDescricao(), e.getPreco(), e.getPrecoTotal(), e.getQuantidade()));
             }
             GerenciadorDeTelas.abrirTelaFinalizar();
@@ -282,22 +286,23 @@ public class TelaProdutoController implements Initializable {
         }
     }
 
-    @FXML
-    private void onBtActionMenu() {
-        Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
-        TelaProdutos.getStage().close();
-    }
-
+    //Carrega o orçamento através do CNPJ da pessoa selecionada na tabela cliente
     @FXML
     private void onBtCarregarOrcamento() {
-        int idCliente = Integer.parseInt(JOptionPane.showInputDialog("Codigo Cliente"));
-        Pesquisar.pesquisarOrcamento(idCliente);
-        lbCnpj.setText(Pesquisar.retornaCliente(idCliente).getCnpj());
-        lbNomeCliente.setText(Pesquisar.retornaCliente(idCliente).getNome());
-        atualizarTabela(Pesquisar.retornaCliente(idCliente).getCnpj());
-        valorTotal();
+        try {
+            int idCliente = Pesquisar.retornaIdCliente(tbClienteOrcamento.getSelectionModel().getSelectedItem().getCnpj());
+            Pesquisar.pesquisarOrcamento(idCliente);
+            lbCnpj.setText(Pesquisar.retornaCliente(idCliente).getCnpj());
+            lbNomeCliente.setText(Pesquisar.retornaCliente(idCliente).getNome());
+            atualizarTabela(Pesquisar.retornaCliente(idCliente).getCnpj());
+            valorTotal();
+        } catch (NullPointerException e) {
+            Alertas.showAlert("Erro", "Nenhum Cliente Selecionado", "Selecionar Cliente", Alert.AlertType.ERROR);
+        }
+
     }
 
+    //Calcula O valor total do orçamento
     private void valorTotal() {
         double total = 0;
         for (Produto produto : Listas.listOrcamento) {
@@ -305,11 +310,19 @@ public class TelaProdutoController implements Initializable {
         }
         lbValorTotal.setText(String.valueOf(total));
     }
-    
+
+    //Atualiza a tabela orcamento ao fazer alguma modificação
     private void atualizarTabela(String cnpj) {
         Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(cnpj));
         tbProdutosOrcamento.setItems(ObsMetodo());
         valorTotal();
+    }
+
+    //Retorna ao Menu Principal
+    @FXML
+    private void onBtActionMenu() {
+        Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
+        TelaProdutos.getStage().close();
     }
 
 }
