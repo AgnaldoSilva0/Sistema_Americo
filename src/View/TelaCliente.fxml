@@ -7,7 +7,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="747.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaClienteController">
+<AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="747.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaClienteController">
     <children>
         <TableView fx:id="tbCliente" layoutX="5.0" layoutY="78.0" prefHeight="288.0" prefWidth="740.0">
             <columns>
@@ -21,6 +21,7 @@
         <Button fx:id="btPesquisarCliente" defaultButton="true" layoutX="207.0" layoutY="53.0" mnemonicParsing="false" onAction="#onBtPesquisar" text="Pesquisar" />
         <TextField fx:id="tfPesquisarCliente" layoutX="58.0" layoutY="53.0" promptText="FONT" />
         <Label layoutX="5.0" layoutY="57.0" text="Pesquisar:" textFill="#fcfcfc" />
-        <Button fx:id="btMenu" layoutX="693.0" layoutY="366.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Menu" />
+        <Button fx:id="btMenu" layoutX="692.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Menu" />
+      <Button layoutX="5.0" layoutY="379.0" mnemonicParsing="false" text="Criar Orçamento do cliente selecionado" />
     </children>
 </AnchorPane>

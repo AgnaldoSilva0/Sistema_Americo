@@ -19,7 +19,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import sistemaamerico.TelaClientes;
 
 public class TelaClienteController implements Initializable {
 
@@ -57,7 +56,6 @@ public class TelaClienteController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btMenu.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
-            TelaClientes.getStage().close();
         });
     }
 

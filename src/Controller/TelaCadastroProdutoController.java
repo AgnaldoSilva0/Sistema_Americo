@@ -9,7 +9,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import sistemaamerico.CadastrarProduto;
 
 public class TelaCadastroProdutoController implements Initializable {
 
@@ -39,7 +38,6 @@ public class TelaCadastroProdutoController implements Initializable {
 
         btMenu.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
-            CadastrarProduto.getStage().close();
         });
         limitadores();
     }

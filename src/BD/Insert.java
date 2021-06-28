@@ -81,7 +81,7 @@ public class Insert {
         }
     }
 
-    public static void inserirOrcamento(String cnpj, String codigoProduto, int quantidade) {
+    public static void inserirOrcamento(String cnpj, String codigoProduto, int quantidade, int idOrcamento) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -89,15 +89,16 @@ public class Insert {
             conn = Conexoes.conectar();
 
             String sql = "INSERT INTO table_orcamento"
-                    + "(data, idClientekey, idProdutokey, quantidade)"
+                    + "(data, idClientekey, idProdutokey, quantidade, idOrcamento)"
                     + " VALUES "
-                    + "(?,?,?,?)";
+                    + "(?,?,?,?,?)";
 
             ps = conn.prepareStatement(sql);
             ps.setString(1, "03/05/2021");
             ps.setInt(2, Pesquisar.retornaIdCliente(cnpj));
             ps.setInt(3, Integer.parseInt(Pesquisar.retornaIdProduto(codigoProduto)));
             ps.setInt(4, quantidade);
+            ps.setInt(5, idOrcamento);
 
             int linhasAfetadas = ps.executeUpdate();
             System.out.println(linhasAfetadas);

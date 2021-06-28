@@ -13,7 +13,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
-import sistemaamerico.TelaCadastroCliente;
 
 public class TelaCadastroClientesController implements Initializable {
 
@@ -57,7 +56,6 @@ public class TelaCadastroClientesController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         btMenu.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.voltarMenuInicial();
-            TelaCadastroCliente.getStage().close();
         });
         btCadastarCliente.setOnMouseClicked((MouseEvent e) -> {
             cadastrarCliente();

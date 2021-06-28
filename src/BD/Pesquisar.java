@@ -7,6 +7,7 @@ package BD;
 
 import Model.Cliente;
 import Model.Listas;
+import Model.Orcamento;
 import Model.Produto;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -74,7 +75,7 @@ public class Pesquisar {
         }
     }
 
-    public static void pesquisarOrcamento(int idCliente) {
+    public static void pesquisarOrcamento(int idCliente, int idOrcamento) {
         Listas.listOrcamento.clear();
         Connection conn = null;
         ResultSet rs = null;
@@ -86,10 +87,11 @@ public class Pesquisar {
             String sql = "SELECT * FROM banco_produto "
                     + "INNER JOIN table_orcamento "
                     + "ON banco_produto.idProduto = table_orcamento.idProdutokey "
-                    + "WHERE table_orcamento.idClientekey = ?";
+                    + "WHERE table_orcamento.idClientekey = ? AND table_orcamento.idOrcamento = ?";
 
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idCliente);
+            ps.setInt(2, idOrcamento);
             rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -166,13 +168,13 @@ public class Pesquisar {
 
         return resultado;
     }
-    
+
     public static Cliente retornaCliente(int idCliente) {
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;
         Cliente cliente = new Cliente();
-        
+
         try {
             conn = Conexoes.conectar();
             String sql = "SELECT * FROM table_cliente"
@@ -230,6 +232,34 @@ public class Pesquisar {
         }
 
         return existe;
+    }
+
+    public static void pesquisarOrcamentoSet() {
+        Connection conn = null;
+        ResultSet rs = null;
+        PreparedStatement ps = null;
+
+        try {
+            conn = Conexoes.conectar();
+
+            String sql = "SELECT * FROM table_cliente "
+                    + "INNER JOIN table_orcamento "
+                    + "ON table_cliente.idCliente = table_orcamento.idClientekey";
+
+            ps = conn.prepareStatement(sql);
+            rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Listas.listListaOrcamento.add(new Orcamento(rs.getString("nome"), "22", String.valueOf(rs.getInt("idOrcamento")), rs.getString("cnpj")));
+            }
+
+        } catch (SQLException e) {
+            e.getMessage();
+        } finally {
+            Conexoes.closeResultSet(rs);
+            Conexoes.closeStatement(ps);
+            Conexoes.closeConnection();
+        }
     }
 
 }
