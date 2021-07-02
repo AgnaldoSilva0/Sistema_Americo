@@ -7,6 +7,7 @@ package Controller;
 
 import Model.Cliente;
 import Model.Listas;
+import Model.Orcamento;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -19,6 +20,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javax.swing.JOptionPane;
+import sistemaamerico.SistemaAmerico;
 
 public class TelaClienteController implements Initializable {
 
@@ -91,6 +94,14 @@ public class TelaClienteController implements Initializable {
             }
         }
         return obsPesquisa;
+    }
+    
+    @FXML
+    private void criarOrcamento() {
+        Orcamento.cnpjStatic = tbCliente.getSelectionModel().getSelectedItem().getCnpj();
+        Orcamento.nOrcamento = JOptionPane.showInputDialog("Identificação Orçamento");
+        
+        SistemaAmerico.mudarTela(2, "Agnaldo");
     }
 
 }

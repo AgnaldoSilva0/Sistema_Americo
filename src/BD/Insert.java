@@ -81,7 +81,7 @@ public class Insert {
         }
     }
 
-    public static void inserirOrcamento(String cnpj, String codigoProduto, int quantidade, int idOrcamento) {
+    public static void inserirOrcamento(String cnpj, String codigoProduto, int quantidade, String idOrcamento) {
         Connection conn = null;
         PreparedStatement ps = null;
 
@@ -98,7 +98,7 @@ public class Insert {
             ps.setInt(2, Pesquisar.retornaIdCliente(cnpj));
             ps.setInt(3, Integer.parseInt(Pesquisar.retornaIdProduto(codigoProduto)));
             ps.setInt(4, quantidade);
-            ps.setInt(5, idOrcamento);
+            ps.setString(5, idOrcamento);
 
             int linhasAfetadas = ps.executeUpdate();
             System.out.println(linhasAfetadas);
@@ -131,7 +131,7 @@ public class Insert {
 
                     ps = conn.prepareStatement(sql);
                     ps.setInt(1, p.getQuantidade());
-                    ps.setInt(2, p.getIdProduto());
+                    ps.setString(2, p.getIdProduto());
                     ps.setInt(3, idCliente);
 
                     int linhasAfetadas = ps.executeUpdate();

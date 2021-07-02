@@ -95,9 +95,9 @@ public class TelaCarregarOrcamentoController implements Initializable {
     @FXML
     private void onBtCarregarOrcamento() {
         try {
-            Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(tbOrcamento.getSelectionModel().getSelectedItem().getnPedido()), Integer.parseInt(tbOrcamento.getSelectionModel().getSelectedItem().getCnpj()));
+            Pesquisar.pesquisarOrcamento(Pesquisar.retornaIdCliente(tbOrcamento.getSelectionModel().getSelectedItem().getnPedido()), tbOrcamento.getSelectionModel().getSelectedItem().getCnpj());
             Orcamento.setCnpjStatic(tbOrcamento.getSelectionModel().getSelectedItem().getnPedido());
-            Orcamento.setnOrcamento(Integer.parseInt(tbOrcamento.getSelectionModel().getSelectedItem().getCnpj()));
+            Orcamento.setnOrcamento(tbOrcamento.getSelectionModel().getSelectedItem().getCnpj());
             Gerenciadores.GerenciadorDeTelas.abrirTelaProduto();
         } catch (NullPointerException e) {
             Alertas.showAlert("Erro", "Nenhum Cliente Selecionado", "Selecionar Cliente", Alert.AlertType.ERROR);

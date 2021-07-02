@@ -20,7 +20,7 @@ public class Orcamento {
     //Usado para salvar o cnpj do cliente para usar para carregar o orçamento
     public static String cnpjStatic;
     //Usado para salvar o id do orçamento para inserir itens
-    public static int nOrcamento;
+    public static String nOrcamento;
 
     public Orcamento(String cliente, String data, String nPedido, String cnpj) {
         this.cliente = cliente;
@@ -69,11 +69,11 @@ public class Orcamento {
         Orcamento.cnpjStatic = cnpjStatic;
     }
 
-    public static int getnOrcamento() {
+    public static String getnOrcamento() {
         return nOrcamento;
     }
 
-    public static void setnOrcamento(int nOrcamento) {
+    public static void setnOrcamento(String nOrcamento) {
         Orcamento.nOrcamento = nOrcamento;
     }
 

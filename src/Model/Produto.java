@@ -3,10 +3,10 @@ package Model;
 public class Produto {
 
     String codigo;
-    String descricao;
+    String descricao, idProduto;
     double preco;
     double PrecoTotal;
-    int ipi, idProduto;
+    int ipi;
     int quantidade;
 
     public Produto(int quantidade, String codigo, String descricao, double preco, int ipi) {
@@ -17,7 +17,7 @@ public class Produto {
         this.ipi = ipi;
     }
 
-    public Produto(String codigo, String descricao, double preco, int ipi, int idProduto) {
+    public Produto(String codigo, String descricao, double preco, int ipi, String idProduto) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.preco = preco;
@@ -34,7 +34,7 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public Produto(String codigo, String descricao, double preco, double PrecoTotal, int ipi, int idProduto, int quantidade) {
+    public Produto(String codigo, String descricao, double preco, double PrecoTotal, int ipi, String idProduto, int quantidade) {
         this.codigo = codigo;
         this.descricao = descricao;
         this.preco = preco;
@@ -92,11 +92,11 @@ public class Produto {
         this.quantidade = quantidade;
     }
 
-    public int getIdProduto() {
+    public String getIdProduto() {
         return idProduto;
     }
 
-    public void setIdProduto(int idProduto) {
+    public void setIdProduto(String idProduto) {
         this.idProduto = idProduto;
     }
 

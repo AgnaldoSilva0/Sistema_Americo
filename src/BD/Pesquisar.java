@@ -35,7 +35,7 @@ public class Pesquisar {
 
             while (rs.next()) {
                 Listas.listProduto.add(new Produto(rs.getString("codigo"), rs.getString("descricao"), rs.getDouble("preco"),
-                        rs.getInt("ipi"), rs.getInt("idProduto")));
+                        rs.getInt("ipi"), rs.getString("idProduto")));
             }
 
         } catch (SQLException e) {
@@ -75,7 +75,7 @@ public class Pesquisar {
         }
     }
 
-    public static void pesquisarOrcamento(int idCliente, int idOrcamento) {
+    public static void pesquisarOrcamento(int idCliente, String idOrcamento) {
         Listas.listOrcamento.clear();
         Connection conn = null;
         ResultSet rs = null;
@@ -91,13 +91,13 @@ public class Pesquisar {
 
             ps = conn.prepareStatement(sql);
             ps.setInt(1, idCliente);
-            ps.setInt(2, idOrcamento);
+            ps.setString(2, idOrcamento);
             rs = ps.executeQuery();
 
             while (rs.next()) {
                 double precoTotal = rs.getDouble("preco") * rs.getInt("quantidade");
                 Listas.listOrcamento.add(new Produto(rs.getString("codigo"), rs.getString("descricao"), rs.getDouble("preco"),
-                        precoTotal, rs.getInt("ipi"), rs.getInt("idProduto"), rs.getInt("quantidade")));
+                        precoTotal, rs.getInt("ipi"), rs.getString("idProduto"), rs.getInt("quantidade")));
             }
 
         } catch (SQLException e) {
@@ -125,7 +125,7 @@ public class Pesquisar {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                codigoProduto = String.valueOf(rs.getInt("idProduto"));
+                codigoProduto = rs.getString("idProduto");
             }
 
         } catch (SQLException e) {
@@ -200,7 +200,7 @@ public class Pesquisar {
         return cliente;
     }
 
-    public static boolean existeNoOrcamento(int idProduto, int idCliente, boolean existe) {
+    public static boolean existeNoOrcamento(String idProduto, int idCliente, boolean existe) {
 
         Connection conn = null;
         ResultSet rs = null;
@@ -213,7 +213,7 @@ public class Pesquisar {
                     + "WHERE idProdutokey = ? AND idClientekey = ?";
 
             ps = conn.prepareStatement(sql);
-            ps.setInt(1, idProduto);
+            ps.setString(1, idProduto);
             ps.setInt(2, idCliente);
             rs = ps.executeQuery();
 
@@ -250,7 +250,7 @@ public class Pesquisar {
             rs = ps.executeQuery();
 
             while (rs.next()) {
-                Listas.listListaOrcamento.add(new Orcamento(rs.getString("nome"), "22", String.valueOf(rs.getInt("idOrcamento")), rs.getString("cnpj")));
+                Listas.listListaOrcamento.add(new Orcamento(rs.getString("nome"), "22", String.valueOf(rs.getString("idOrcamento")), rs.getString("cnpj"))); 
             }
 
         } catch (SQLException e) {

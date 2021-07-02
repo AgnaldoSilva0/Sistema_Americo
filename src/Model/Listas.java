@@ -23,7 +23,7 @@ public class Listas {
                 Pesquisar.pesquisarProduto();
             }
             if (listOrcamento.isEmpty()) {
-                Pesquisar.pesquisarOrcamento(0,0);
+                Pesquisar.pesquisarOrcamento(0,"");
             }
             if (listCliente.isEmpty()) {
                 Pesquisar.pesquisarCliente();

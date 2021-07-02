@@ -117,10 +117,26 @@ public class TelaProdutoController implements Initializable {
         btExcluir.setOnMouseClicked((MouseEvent e) -> {
             adicionarProdutoOrcamento(4, 0);
         });
-        tbProdutosOrcamento.setItems(ObsMetodo());
-        iniciarInitTabela();
-        valorTotal();
-        ativarBotaoAdd();
+        
+        
+        SistemaAmerico.addOnChangeScreenListener(new SistemaAmerico.OnChangeScreen() {
+            @Override
+            public void onScreenChanged(int newScreen, Object userData) {
+                if (newScreen == 2 && userData == null) {
+                    System.out.println("Olá");
+                    tbProdutosOrcamento.setItems(ObsMetodo());
+                    iniciarInitTabela();
+                    valorTotal();
+                    ativarBotaoAdd();
+                }
+                if (newScreen == 2 && userData == "Agnaldo") {
+                    System.out.println("Olá2");
+                    tbProdutosOrcamento.getItems().clear();
+                    preencherLabel();
+                    ativarBotaoAdd();
+                }
+                }
+            });
     }
 
     //Referencia objeto a tabela
@@ -272,7 +288,7 @@ public class TelaProdutoController implements Initializable {
             atualizarTabela(Pesquisar.retornaCliente(idCliente).getCnpj());
             valorTotal();
         } catch (NullPointerException e) {
-            Alertas.showAlert("Erro", "Nenhum Cliente Selecionadof", "Selecionar Cliente", Alert.AlertType.ERROR);
+            Alertas.showAlert("Erro", "Nenhum Cliente Selecionado", "Selecionar Cliente", Alert.AlertType.ERROR);
         }
     }
 
@@ -283,6 +299,15 @@ public class TelaProdutoController implements Initializable {
             total = total + produto.getPrecoTotal();
         }
         lbValorTotal.setText(String.valueOf(total));
+        preencherLabel();
+    }
+    
+    private void preencherLabel() {
+        int idCliente = Pesquisar.retornaIdCliente(Orcamento.getCnpjStatic());
+            
+        lbCnpj.setText(Pesquisar.retornaCliente(idCliente).getCnpj());
+        lbNomeCliente.setText(Pesquisar.retornaCliente(idCliente).getNome());
+        lbNorcamento.setText(String.valueOf(Orcamento.nOrcamento));
     }
 
     //Atualiza a tabela orcamento ao fazer alguma modificação
@@ -306,5 +331,7 @@ public class TelaProdutoController implements Initializable {
             lbAtivarBotao.setText( " ");
         }
     }
+    
+    
 
 }
