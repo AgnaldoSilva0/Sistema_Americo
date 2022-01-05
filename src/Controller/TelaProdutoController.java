@@ -25,6 +25,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javax.swing.JOptionPane;
 import sistemaamerico.SistemaAmerico;
@@ -99,9 +101,26 @@ public class TelaProdutoController implements Initializable {
 
     @FXML
     private Label lbCnpj, lbNorcamento, lbAtivarBotao;
+    
+    @FXML
+    private ImageView imgPdf;
+    
+    @FXML
+    private ImageView imgNovoOrcamento;
+    
+    @FXML
+    private ImageView imgPesquisar;
+    
+    @FXML
+    private ImageView imgAdicionarOrcamento;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        imgPdf.setImage(new Image("/Icons/pdf.png"));
+        imgNovoOrcamento.setImage(new Image("/Icons/orcamento.png"));
+        imgPesquisar.setImage(new Image("/Icons/pesquisar.png"));
+        imgAdicionarOrcamento.setImage(new Image("/Icons/adicionar.png"));
+        
         btOrcamento.setOnMouseClicked((MouseEvent e) -> {
             entradaDadosCliente();
         });

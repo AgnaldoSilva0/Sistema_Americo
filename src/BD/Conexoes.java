@@ -23,7 +23,6 @@ public class Conexoes {
         try {
             String url = "jdbc:sqlite:C:/BDs/dds/banco_dados.db";
             conn = DriverManager.getConnection(url);
-            System.out.println("Conectado");
         } catch (SQLException e) {
             e.getMessage();
         }
@@ -34,7 +33,6 @@ public class Conexoes {
         if (conn != null) {
             try {
                 conn.close();
-                System.out.println("Desconectado");
             } catch (SQLException e) {
                 e.getMessage();
             }
@@ -45,7 +43,6 @@ public class Conexoes {
         if (st != null) {
             try {
                 st.close();
-                System.out.println("Statement fechado");
             } catch (SQLException e) {
                 e.getMessage();
             }
@@ -56,7 +53,6 @@ public class Conexoes {
         if (rs != null) {
             try {
                 rs.close();
-                System.out.println("ResultSet fechado");
             } catch (SQLException e) {
                 e.getMessage();
             }
@@ -82,7 +78,6 @@ public class Conexoes {
             //  + ")";
             st = conn.createStatement();
             st.execute(sql);
-            System.out.println("Tabela Criada");
         } catch (SQLException e) {
             e.getMessage();
         } finally {
