@@ -1,15 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaCarregarOrcamentoController">
    <children>
-      <Button fx:id="btCarregar" layoutX="216.0" layoutY="502.0" mnemonicParsing="false" onAction="#onBtCarregarOrcamento" prefHeight="25.0" prefWidth="277.0" text="Carregar" />
-      <Button fx:id="btPesquisar" layoutX="190.0" layoutY="21.0" mnemonicParsing="false" text="Pesquisar" />
+      <Button fx:id="btCarregar" layoutX="216.0" layoutY="502.0" mnemonicParsing="false" onAction="#onBtCarregarOrcamento" prefHeight="25.0" prefWidth="277.0" style="-fx-background-color: AQUA;" text="Carregar" textFill="WHITE">
+         <font>
+            <Font name="Arial Bold" size="13.0" />
+         </font></Button>
+      <Button fx:id="btPesquisar" layoutX="190.0" layoutY="21.0" mnemonicParsing="false" style="-fx-background-color: AQUA;" text="Pesquisar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
       <TextField fx:id="tfPesquisar" layoutX="14.0" layoutY="21.0" prefHeight="25.0" prefWidth="176.0" promptText="Fonte" />
       <TableView fx:id="tbOrcamento" layoutX="14.0" layoutY="57.0" prefHeight="438.0" prefWidth="678.0">
         <columns>
@@ -19,5 +28,22 @@
           <TableColumn fx:id="clmnPedido" minWidth="8.0" prefWidth="12.0" text="T" />
         </columns>
       </TableView>
+      <Button fx:id="btAtualizar" layoutX="43.0" layoutY="503.0" mnemonicParsing="false" onAction="#onBtAtualizarLista" style="-fx-background-color: aqua;" text="Atualizar Lista" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgAtualizar" fitHeight="25.0" fitWidth="29.0" layoutX="14.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
+      <Button fx:id="btSair" layoutX="596.0" layoutY="503.0" mnemonicParsing="false" onAction="#onBtSair" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: aqua;" text="Sair">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgSair" fitHeight="25.0" fitWidth="29.0" layoutX="567.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
+      <Label layoutX="522.0" layoutY="1.0" prefHeight="27.0" prefWidth="176.0" text="Carregar Orçamento" textFill="#395d5e" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

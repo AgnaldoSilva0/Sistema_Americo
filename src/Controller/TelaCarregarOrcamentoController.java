@@ -21,6 +21,8 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  * FXML Controller class
@@ -49,13 +51,24 @@ public class TelaCarregarOrcamentoController implements Initializable {
     
     @FXML
     private Button btPesquisar;
+    
+    @FXML
+    private Button btAtualizar;
 
     @FXML
     private TextField tfPesquisar;
+    
+    @FXML
+    private ImageView imgAtualizar;
+    
+    @FXML
+    private ImageView imgSair;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Pesquisar.pesquisarOrcamentoSet();
+        imgAtualizar.setImage(new Image("/Icons/atualizar.png"));
+        imgSair.setImage(new Image("/Icons/sair.png"));
         tbOrcamento.setItems(ObsMetodo());
         iniciarInit();
     }    
@@ -104,6 +117,17 @@ public class TelaCarregarOrcamentoController implements Initializable {
         } 
     }
     
+    @FXML
+    private void onBtAtualizarLista() {
+        Pesquisar.pesquisarOrcamentoSet();
+        imgAtualizar.setImage(new Image("/Icons/atualizar.png"));
+        tbOrcamento.setItems(ObsMetodo());
+        iniciarInit();
+    }
     
+    @FXML
+    private void onBtSair() {
+        Gerenciadores.GerenciadorDeTelas.abrirTelaProduto();
+    }
     
 }

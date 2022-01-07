@@ -6,10 +6,12 @@
 package Controller;
 
 import BD.Insert;
+import Limitadores.Alertas;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -63,6 +65,11 @@ public class TelaCadastroClientesController implements Initializable {
     }
 
     private void cadastrarCliente() {
+        if(tfNome.getText().trim().isEmpty() || tfCnpj.getText().trim().isEmpty()) {
+            Alertas.showAlert("Campo Vazio", "Preencha os campos obrigatórios", "Nome e CNPJ não podem ser vazios!", Alert.AlertType.WARNING);
+            return;
+        }
+        
         String nome = tfNome.getText();
         String cnpj = tfCnpj.getText();
         String ie = tfIe.getText();
@@ -74,20 +81,21 @@ public class TelaCadastroClientesController implements Initializable {
         String telefone = tfTelefone.getText();
         String responsavel = tfResponsavel.getText();
         Insert.inserirCliente(nome, cnpj, endereco, email, telefone, cidade, cep, estado, responsavel, ie);
+        Alertas.showAlert("Cliente Cadastrado", "Sucesso", nome, Alert.AlertType.CONFIRMATION);
         limparCampos();
     }
 
     private void limparCampos() {
-        tfNome.setText("N/A");
-        tfCnpj.setText("N/A");
-        tfCep.setText("N/A");
-        tfCidade.setText("N/A");
-        tfEmail.setText("N/A");
-        tfEndereco.setText("N/A");
-        tfEstado.setText("N/A");
-        tfIe.setText("N/A");
-        tfResponsavel.setText("N/A");
-        tfTelefone.setText("N/A");
+        tfNome.clear();
+        tfCnpj.clear();
+        tfCep.clear();
+        tfCidade.clear();
+        tfEmail.clear();
+        tfEndereco.clear();
+        tfEstado.clear();
+        tfIe.clear();
+        tfResponsavel.clear();
+        tfTelefone.clear();
     }
 
 }

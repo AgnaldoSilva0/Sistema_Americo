@@ -13,7 +13,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="534.0" prefWidth="1185.0" style="-fx-background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 35%, rgba(0,212,255,1) 100%);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaProdutoController">
+<AnchorPane id="AnchorPane" prefHeight="501.0" prefWidth="1185.0" style="-fx-background-color: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 35%, rgba(0,212,255,1) 100%);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaProdutoController">
     <children>
         <TableView fx:id="tbProdutos" layoutX="4.0" layoutY="76.0" prefHeight="389.0" prefWidth="558.0">
             <columns>
@@ -24,12 +24,11 @@
             </columns>
         </TableView>
         <TextField fx:id="tfPesquisar" layoutX="1.0" layoutY="46.0" prefHeight="25.0" prefWidth="208.0" />
-        <Label layoutX="16.0" layoutY="48.0" text="Código:" textFill="WHITE" />
         <Button fx:id="btPesquisar" defaultButton="true" layoutX="209.0" layoutY="44.0" mnemonicParsing="false" onAction="#onBtPesquisarCodigo" prefHeight="26.0" prefWidth="77.0" style="-fx-background-color: AQUA;" text="Pesquisar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font></Button>
-        <Button fx:id="btOrcamento" layoutX="628.0" layoutY="501.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: AQUA;" text="Gerar PDF" textFill="WHITE">
+        <Button fx:id="btOrcamento" disable="true" layoutX="629.0" layoutY="468.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="123.0" style="-fx-background-color: AQUA;" text="Gerar PDF" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
@@ -79,14 +78,20 @@
                 <Font name="System Bold" size="14.0" />
             </font>
         </Label>
-      <Label fx:id="lbNomeCliente" layoutX="603.0" layoutY="14.0" text="..." />
-      <Label fx:id="lbCnpj" layoutX="884.0" layoutY="14.0" text="..." />
-      <Label layoutX="603.0" layoutY="466.0" prefHeight="25.0" prefWidth="108.0" text="Orçamento Nº" textFill="WHITE">
+      <Label fx:id="lbNomeCliente" layoutX="603.0" layoutY="14.0" text="...">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font></Label>
+      <Label fx:id="lbCnpj" layoutX="884.0" layoutY="14.0" text="...">
+         <font>
+            <Font name="Arial Bold" size="18.0" />
+         </font></Label>
+      <Label layoutX="790.0" layoutY="467.0" prefHeight="25.0" prefWidth="108.0" text="Orçamento Nº">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Label>
-      <Label fx:id="lbNorcamento" layoutX="779.0" layoutY="471.0" text="Não Especificado" textFill="#0a0909">
+      <Label fx:id="lbNorcamento" layoutX="898.0" layoutY="470.0" text="Não Especificado" textFill="#0a0909">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
@@ -96,13 +101,8 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="628.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: AQUA;" text="Novo Orçamento" textFill="WHITE">
-         <font>
-            <Font name="Arial Bold" size="13.0" />
-         </font></Button>
-      <ImageView fx:id="imgPdf" fitHeight="25.0" fitWidth="25.0" layoutX="602.0" layoutY="501.0" pickOnBounds="true" preserveRatio="true" />
-      <Separator layoutX="566.0" orientation="VERTICAL" prefHeight="534.0" prefWidth="0.0" />
-      <ImageView fx:id="imgNovoOrcamento" fitHeight="25.0" fitWidth="25.0" layoutX="603.0" layoutY="470.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgPdf" fitHeight="25.0" fitWidth="25.0" layoutX="603.0" layoutY="468.0" pickOnBounds="true" preserveRatio="true" />
+      <Separator layoutX="564.0" orientation="VERTICAL" prefHeight="497.0" prefWidth="8.0" />
       <ImageView fx:id="imgAdicionarOrcamento" fitHeight="25.0" fitWidth="25.0" layoutX="127.0" layoutY="469.0" pickOnBounds="true" preserveRatio="true" />
       <ImageView fx:id="imgPesquisar" fitHeight="25.0" fitWidth="25.0" layoutX="286.0" layoutY="46.0" pickOnBounds="true" preserveRatio="true" />
     </children>

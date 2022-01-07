@@ -106,20 +106,12 @@ public class TelaProdutoController implements Initializable {
     private ImageView imgPdf;
     
     @FXML
-    private ImageView imgNovoOrcamento;
-    
-    @FXML
     private ImageView imgPesquisar;
-    
-    @FXML
-    private ImageView imgAdicionarOrcamento;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgPdf.setImage(new Image("/Icons/pdf.png"));
-        imgNovoOrcamento.setImage(new Image("/Icons/orcamento.png"));
         imgPesquisar.setImage(new Image("/Icons/pesquisar.png"));
-        imgAdicionarOrcamento.setImage(new Image("/Icons/adicionar.png"));
         
         btOrcamento.setOnMouseClicked((MouseEvent e) -> {
             entradaDadosCliente();
@@ -347,10 +339,8 @@ public class TelaProdutoController implements Initializable {
         if (Orcamento.cnpjStatic == null) {
         } else {
             btAdicionarProdutoOrcamento.setDisable(false);
+            btOrcamento.setDisable(false);
             lbAtivarBotao.setText( " ");
         }
     }
-    
-    
-
 }

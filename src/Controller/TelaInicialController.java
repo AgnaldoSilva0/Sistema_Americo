@@ -32,10 +32,35 @@ public class TelaInicialController implements Initializable {
 
     @FXML
     private ImageView imgLogoM;
+    
+    @FXML
+    private ImageView imgOrcamento;
+    
+    @FXML
+    private ImageView imgSair;
+    
+    @FXML
+    private ImageView imgTermos;
+    
+    @FXML
+    private ImageView imgCadastrarProduto;
+    
+    @FXML
+    private ImageView imgCadastrarCliente;
+    
+    @FXML
+    private ImageView imgClientes;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         imgLogoM.setImage(new Image("/Icons/logoM.png"));
+        imgOrcamento.setImage(new Image("/Icons/orcamento24.png"));
+        imgSair.setImage(new Image("/Icons/sair.png"));
+        imgTermos.setImage(new Image("/Icons/pdf.png"));
+        imgClientes.setImage(new Image("/Icons/pesquisar.png"));
+        imgCadastrarProduto.setImage(new Image("/Icons/produto.png"));
+        imgCadastrarCliente.setImage(new Image("/Icons/adicionar.png"));
+        
         Listas.carregarTodasListas();
         btCadastrarProduto.setOnMouseClicked((MouseEvent e) -> {
             Gerenciadores.GerenciadorDeTelas.abrirTelaCadastroProduto();
@@ -54,6 +79,11 @@ public class TelaInicialController implements Initializable {
             Gerenciadores.GerenciadorDeTelas.abrirTelaTermos();
         });
 
+    }
+    
+    @FXML
+    void onBtSair() {
+        sistemaamerico.SistemaAmerico.getStage().close();
     }
 
 }
