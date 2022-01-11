@@ -5,9 +5,11 @@
  */
 package BD;
 
+import Limitadores.Alertas;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import javafx.scene.control.Alert;
 
 /**
  *
@@ -33,6 +35,57 @@ public class Delete {
             System.out.println(linhasAfetadas);
             
         } catch(SQLException e) {
+            e.getMessage();
+        } finally {
+            Conexoes.closeStatement(ps);
+            Conexoes.closeConnection();
+        }
+    }
+    
+    public static void deletarOrcamento(String idOrcamento) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        
+        try {
+            conn = Conexoes.conectar();
+            
+            String sql = "DELETE FROM table_orcamento"
+                    + " WHERE idOrcamento = ?;";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idOrcamento);
+            System.out.println(idOrcamento);
+            
+            int linhasAfetadas = ps.executeUpdate();
+            Alertas.showAlert("Sucesso", "Orçameno Excluido com Sucesso", idOrcamento, Alert.AlertType.CONFIRMATION);
+            
+        } catch(SQLException e) {
+            Alertas.showAlert("Erro", "Aconteceu um erro ao tentar excluir o item, tente novamente!", "", Alert.AlertType.ERROR);
+            e.getMessage();
+        } finally {
+            Conexoes.closeStatement(ps);
+            Conexoes.closeConnection();
+        }
+    }
+    
+    public static void deletarCliente(String idCliente) {
+        Connection conn = null;
+        PreparedStatement ps = null;
+        
+        try {
+            conn = Conexoes.conectar();
+            
+            String sql = "DELETE FROM table_orcamento"
+                    + " WHERE idOrcamento = ?;";
+            
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, idOrcamento);
+            
+            int linhasAfetadas = ps.executeUpdate();
+            Alertas.showAlert("Sucesso", "Orçameno Excluido com Sucesso", idOrcamento, Alert.AlertType.CONFIRMATION);
+            
+        } catch(SQLException e) {
+            Alertas.showAlert("Erro", "Aconteceu um erro ao tentar excluir o item, tente novamente!", "", Alert.AlertType.ERROR);
             e.getMessage();
         } finally {
             Conexoes.closeStatement(ps);

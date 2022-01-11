@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" prefHeight="541.0" prefWidth="698.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaCarregarOrcamentoController">
    <children>
-      <Button fx:id="btCarregar" layoutX="216.0" layoutY="502.0" mnemonicParsing="false" onAction="#onBtCarregarOrcamento" prefHeight="25.0" prefWidth="277.0" style="-fx-background-color: AQUA;" text="Carregar" textFill="WHITE">
+      <Button fx:id="btCarregar" layoutX="14.0" layoutY="503.0" mnemonicParsing="false" onAction="#onBtCarregarOrcamento" prefHeight="25.0" prefWidth="277.0" style="-fx-background-color: AQUA;" text="Carregar Orçamento" textFill="WHITE">
          <font>
             <Font name="Arial Bold" size="13.0" />
          </font></Button>
@@ -28,12 +28,12 @@
           <TableColumn fx:id="clmnPedido" minWidth="8.0" prefWidth="12.0" text="T" />
         </columns>
       </TableView>
-      <Button fx:id="btAtualizar" layoutX="43.0" layoutY="503.0" mnemonicParsing="false" onAction="#onBtAtualizarLista" style="-fx-background-color: aqua;" text="Atualizar Lista" textFill="WHITE">
+      <Button fx:id="btAtualizar" layoutX="596.0" layoutY="30.0" mnemonicParsing="false" onAction="#onBtAtualizarLista" style="-fx-background-color: aqua;" text="Atualizar Lista" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <ImageView fx:id="imgAtualizar" fitHeight="25.0" fitWidth="29.0" layoutX="14.0" layoutY="503.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgAtualizar" fitHeight="25.0" fitWidth="29.0" layoutX="567.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
       <Button fx:id="btSair" layoutX="596.0" layoutY="503.0" mnemonicParsing="false" onAction="#onBtSair" prefHeight="25.0" prefWidth="96.0" style="-fx-background-color: aqua;" text="Sair">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -45,5 +45,11 @@
             <Font name="System Bold" size="18.0" />
          </font>
       </Label>
+      <Button fx:id="btExcluirOrcamento" layoutX="435.0" layoutY="504.0" mnemonicParsing="false" onAction="#onBtExcluirOrcamento" style="-fx-background-color: red;" text="Excluir Orçamento" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <ImageView fx:id="imgExcluirOrcamento" fitHeight="25.0" fitWidth="29.0" layoutX="406.0" layoutY="504.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

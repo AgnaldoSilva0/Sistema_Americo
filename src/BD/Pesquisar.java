@@ -235,6 +235,7 @@ public class Pesquisar {
     }
 
     public static void pesquisarOrcamentoSet() {
+        Listas.listListaOrcamento.clear();
         Connection conn = null;
         ResultSet rs = null;
         PreparedStatement ps = null;

@@ -5,6 +5,7 @@
  */
 package Controller;
 
+import BD.Delete;
 import BD.Pesquisar;
 import Limitadores.Alertas;
 import Model.Listas;
@@ -63,12 +64,16 @@ public class TelaCarregarOrcamentoController implements Initializable {
     
     @FXML
     private ImageView imgSair;
+    
+    @FXML
+    private ImageView imgExcluirOrcamento;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         Pesquisar.pesquisarOrcamentoSet();
         imgAtualizar.setImage(new Image("/Icons/atualizar.png"));
         imgSair.setImage(new Image("/Icons/sair.png"));
+        imgExcluirOrcamento.setImage(new Image("/Icons/excluir.png"));
         tbOrcamento.setItems(ObsMetodo());
         iniciarInit();
     }    
@@ -120,9 +125,23 @@ public class TelaCarregarOrcamentoController implements Initializable {
     @FXML
     private void onBtAtualizarLista() {
         Pesquisar.pesquisarOrcamentoSet();
-        imgAtualizar.setImage(new Image("/Icons/atualizar.png"));
         tbOrcamento.setItems(ObsMetodo());
         iniciarInit();
+    } 
+    
+    @FXML
+    private void onBtExcluirOrcamento() {
+        String idOrcamento = tbOrcamento.getSelectionModel().getSelectedItem().getCnpj();
+        if (Alertas.OpcaoYesNo(idOrcamento) == true) {
+            Delete.deletarOrcamento(idOrcamento);
+        
+            Pesquisar.pesquisarOrcamentoSet();
+            tbOrcamento.setItems(ObsMetodo());
+            iniciarInit();
+        } else {
+            return;
+        }
+        
     }
     
     @FXML

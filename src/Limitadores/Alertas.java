@@ -6,6 +6,7 @@
 package Limitadores;
 
 import javafx.scene.control.Alert;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,4 +21,17 @@ public class Alertas {
         alert.setContentText(content);
         alert.show();
     }
+    
+    public static boolean OpcaoYesNo(String titulo) {
+        boolean decisao = false;
+        
+        int reply = JOptionPane.showConfirmDialog(null, titulo, "Deseja Excluir o Item selecionado?", JOptionPane.YES_NO_OPTION);
+        
+        if (reply == JOptionPane.YES_OPTION) {
+          decisao = true;
+        }
+        
+        return decisao;
+    }
+    
 }
