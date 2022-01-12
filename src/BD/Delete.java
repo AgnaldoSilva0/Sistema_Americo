@@ -68,21 +68,21 @@ public class Delete {
         }
     }
     
-    public static void deletarCliente(String idCliente) {
+    public static void deletarCliente(String cnpj) {
         Connection conn = null;
         PreparedStatement ps = null;
         
         try {
             conn = Conexoes.conectar();
             
-            String sql = "DELETE FROM table_orcamento"
-                    + " WHERE idOrcamento = ?;";
+            String sql = "DELETE FROM table_cliente"
+                    + " WHERE cnpj = ?;";
             
             ps = conn.prepareStatement(sql);
-            ps.setString(1, idOrcamento);
+            ps.setString(1, cnpj);
             
             int linhasAfetadas = ps.executeUpdate();
-            Alertas.showAlert("Sucesso", "Orçameno Excluido com Sucesso", idOrcamento, Alert.AlertType.CONFIRMATION);
+            Alertas.showAlert("Sucesso", "Cliente Excluido com Sucesso", cnpj, Alert.AlertType.CONFIRMATION);
             
         } catch(SQLException e) {
             Alertas.showAlert("Erro", "Aconteceu um erro ao tentar excluir o item, tente novamente!", "", Alert.AlertType.ERROR);

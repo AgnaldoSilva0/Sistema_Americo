@@ -5,6 +5,9 @@
  */
 package Controller;
 
+import BD.Delete;
+import BD.Pesquisar;
+import Limitadores.Alertas;
 import Model.Cliente;
 import Model.Listas;
 import Model.Orcamento;
@@ -14,6 +17,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -50,7 +54,7 @@ public class TelaClienteController implements Initializable {
     private Button btPesquisarCliente;
 
     @FXML
-    private Button btMenu;
+    private Button btMenu, btExcluirCliente;
 
     @FXML
     private TextField tfPesquisarCliente;
@@ -102,6 +106,22 @@ public class TelaClienteController implements Initializable {
         Orcamento.nOrcamento = JOptionPane.showInputDialog("Identificação Orçamento");
         
         SistemaAmerico.mudarTela(2, "Agnaldo");
+    }
+    
+    @FXML
+    private void onBtExcluirCliente() {
+        String cnpj = tbCliente.getSelectionModel().getSelectedItem().getCnpj();
+        
+        if (Alertas.OpcaoYesNo(cnpj) == true) {
+            Delete.deletarCliente(cnpj);
+            Alertas.showAlert("Cliente ecluido com sucesso", cnpj, "", Alert.AlertType.CONFIRMATION);
+            
+            Listas.listCliente.clear();
+            Pesquisar.pesquisarCliente();
+            iniciarInitAmalcaburio();
+            tbCliente.setItems(Busca());
+        }
+        
     }
 
 }

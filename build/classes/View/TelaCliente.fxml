@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
 <AnchorPane id="AnchorPane" prefHeight="412.0" prefWidth="747.0" style="-fx-background-color: linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12);" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.TelaClienteController">
     <children>
@@ -23,5 +24,10 @@
         <Label layoutX="5.0" layoutY="57.0" text="Pesquisar:" textFill="#fcfcfc" />
         <Button fx:id="btMenu" layoutX="692.0" layoutY="379.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="53.0" text="Menu" />
       <Button fx:id="btSelecionarCliente" layoutX="5.0" layoutY="379.0" mnemonicParsing="false" onAction="#criarOrcamento" text="Criar Orçamento do cliente selecionado" />
+      <Button fx:id="btExcluirCliente" layoutX="413.0" layoutY="379.0" mnemonicParsing="false" onAction="#onBtExcluirCliente" style="-fx-background-color: red;" text="Excluir Cliente Selecionado" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
     </children>
 </AnchorPane>
